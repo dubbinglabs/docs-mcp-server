@@ -1,0 +1,27 @@
+{
+  "name": "docs-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for intelligent documentation search and discovery",
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "docs-mcp-server": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc && chmod +x dist/index.js",
+    "watch": "tsc --watch",
+    "prepare": "npm run build"
+  },
+  "keywords": ["mcp", "documentation", "search", "claude"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "gray-matter": "^4.0.3",
+    "natural": "^8.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}
