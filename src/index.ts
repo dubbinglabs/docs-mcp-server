@@ -90,6 +90,9 @@ class DocsServer {
           case 'list_tags':
             return await this.listTags();
 
+          case 'reindex_docs':
+            return await this.reindexDocs();
+
           default:
             throw new Error(`Unknown tool: ${name}`);
         }
@@ -180,6 +183,14 @@ class DocsServer {
       {
         name: 'list_tags',
         description: 'List all available tags used in the documentation.',
+        inputSchema: {
+          type: 'object',
+          properties: {},
+        },
+      },
+      {
+        name: 'reindex_docs',
+        description: 'Rebuild the documentation index to pick up any changes to markdown files.',
         inputSchema: {
           type: 'object',
           properties: {},
@@ -343,6 +354,35 @@ class DocsServer {
             {
               total: tags.length,
               tags,
+            },
+            null,
+            2
+          ),
+        },
+      ],
+    };
+  }
+
+  private async reindexDocs() {
+    await this.indexer.buildIndex();
+
+    const docCount = this.indexer.getIndex().documents.size;
+    const categories = this.indexer.getCategories();
+    const tags = this.indexer.getTags();
+
+    return {
+      content: [
+        {
+          type: 'text',
+          text: JSON.stringify(
+            {
+              status: 'success',
+              message: 'Documentation index rebuilt successfully',
+              stats: {
+                documents: docCount,
+                categories: categories.length,
+                tags: tags.length,
+              },
             },
             null,
             2

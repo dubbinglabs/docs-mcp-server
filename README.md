@@ -4,13 +4,14 @@ Production-ready MCP (Model Context Protocol) server for intelligent documentati
 
 ## Features
 
-### 5 Powerful Tools
+### 6 Powerful Tools
 
 1. **search_docs** - Search by keywords with optional category/tag filtering
 2. **get_document** - Retrieve full document content
 3. **get_related_docs** - Find related documentation based on relationships
 4. **list_categories** - Browse all documentation categories
 5. **list_tags** - Explore all available tags
+6. **reindex_docs** - Rebuild the documentation index to pick up changes
 
 ### Advanced Capabilities
 
@@ -188,6 +189,27 @@ search_docs({
 ```
 
 Returns only documents with ALL specified tags.
+
+### Example 6: Rebuild Index
+
+```javascript
+reindex_docs()
+```
+
+Returns:
+```json
+{
+  "status": "success",
+  "message": "Documentation index rebuilt successfully",
+  "stats": {
+    "documents": 42,
+    "categories": 5,
+    "tags": 18
+  }
+}
+```
+
+Use this after adding or modifying markdown files to refresh the index.
 
 ## How It Works
 

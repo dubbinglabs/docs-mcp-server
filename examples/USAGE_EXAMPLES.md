@@ -369,6 +369,38 @@ search_docs({ query: "admin authorization permissions" })
 
 **Result**: Claude gets comprehensive cross-cutting context!
 
+## Example 9: Refreshing Documentation Index
+
+### Scenario
+You've just added new markdown files or updated existing documentation.
+
+### User Request
+```
+"I just added new API documentation files. Can you reindex the docs?"
+```
+
+### What Claude Does
+
+**Step 1**: Rebuild the index
+```javascript
+reindex_docs()
+```
+
+**Response**:
+```json
+{
+  "status": "success",
+  "message": "Documentation index rebuilt successfully",
+  "stats": {
+    "documents": 52,
+    "categories": 9,
+    "tags": 23
+  }
+}
+```
+
+**Result**: The index is refreshed and new documents are now searchable!
+
 ## Tips for Best Results
 
 ### 1. Use Specific Keywords
